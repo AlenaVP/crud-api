@@ -15,6 +15,9 @@ const router = (req, res) => {
   } else if (pathName.match(/^\/api\/users\/\w+$/) && req.method === 'PUT') {
     const userId = pathName.split('/')[3];
     updateUser(req, res, userId);
+  } else if (pathname.match(/^\/api\/users\/\w+$/) && req.method === 'DELETE') {
+    const userId = pathname.split('/')[3];
+    deleteUser(req, res, userId);
   } else {
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ message: 'Not Found' }));

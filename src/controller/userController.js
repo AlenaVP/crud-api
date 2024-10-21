@@ -99,3 +99,24 @@ export const updateUser = (req, res, userId) => {
     res.end(JSON.stringify(updatedUser));
   });
 };
+
+export const deleteUser = (req, res, userId) => {
+  if (!isUuid(userId)) {
+    res.writeHead(400, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ message: 'Invalid user ID' }));
+    return;
+  }
+
+  const userIndex = users.findIndex(u => u.id === userId);
+
+  if (userIndex === -1) {
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ message: 'User not found' }));
+    return;
+  }
+
+  users.splice(userIndex, 1);
+
+  res.writeHead(204);
+  res.end();
+};
