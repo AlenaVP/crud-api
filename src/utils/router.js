@@ -6,16 +6,17 @@ const router = (req, res) => {
   const { pathname } = parsedUrl;
 
   if (pathname === '/api/users' && req.method === 'GET') {
-    getUsers(req,res);
-  } else if (pathname.match(/^\/api\/users\/\w+$/) && req.method === 'GET') {
+    getUsers(req, res);
+  } else if (pathname.match(/^\/api\/users\/[\w-]{36}$/) && req.method === 'GET') { // Adjusted regex for UUID
     const userId = pathname.split('/')[3];
+    console.log('User ID from URL:', userId);
     getUserById(req, res, userId);
   } else if (pathname === '/api/users' && req.method === 'POST') {
     createUser(req, res);
-  } else if (pathname.match(/^\/api\/users\/\w+$/) && req.method === 'PUT') {
+  } else if (pathname.match(/^\/api\/users\/[\w-]{36}$/) && req.method === 'PUT') { // Adjusted regex for UUID
     const userId = pathname.split('/')[3];
     updateUser(req, res, userId);
-  } else if (pathname.match(/^\/api\/users\/\w+$/) && req.method === 'DELETE') {
+  } else if (pathname.match(/^\/api\/users\/[\w-]{36}$/) && req.method === 'DELETE') { // Adjusted regex for UUID
     const userId = pathname.split('/')[3];
     deleteUser(req, res, userId);
   } else {
