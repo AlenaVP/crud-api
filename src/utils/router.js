@@ -15,7 +15,6 @@ const router = (req, res) => {
       createUser(req, res);
     } else if (pathname.match(/^\/api\/users\/[\w-]{36}$/) && req.method === 'PUT') {
       const userId = pathname.split('/')[3];
-      console.log('User ID from URL:', userId);
       updateUser(req, res, userId);
     } else if (pathname.match(/^\/api\/users\/[\w-]{36}$/) && req.method === 'DELETE') {
       const userId = pathname.split('/')[3];
@@ -28,6 +27,6 @@ const router = (req, res) => {
     res.writeHead(500, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ message: 'Internal Server Error' }));
   }
-}
+};
 
 export default router;

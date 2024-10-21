@@ -8,7 +8,7 @@ export const getUsers = (req, res) => {
 };
 
 export const getUserById = (req, res, userId) => {
-    if (!isUuid(userId)) {
+  if (!isUuid(userId)) {
     res.writeHead(400, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ message: 'Invalid user ID' }));
     return;
