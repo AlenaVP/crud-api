@@ -112,3 +112,6 @@ First `POST` request to `localhost:3001/api` creates a user
 Second `GET` request to `localhost:3002/api` returns the created user
 Third `DELETE` request to `localhost:3003/api` deletes the created user
 Fourth `GET` request to `localhost:3001/api` returns a 404 status code for the deleted user
+
+## License
+This project is licensed under the MIT License.
