@@ -6,6 +6,7 @@
   "scripts": {
     "start:dev": "nodemon app.js",
     "start:prod": "node app.js",
+    "start:multi": "node multi.js",
     "test": "jest"
   },
   "dependencies": {
