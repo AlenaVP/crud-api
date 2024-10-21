@@ -8,15 +8,13 @@ export const getUsers = (req, res) => {
 };
 
 export const getUserById = (req, res, userId) => {
-  console.log('Fetching user with ID:', userId);
-  if (!isUuid(userId)) {
+    if (!isUuid(userId)) {
     res.writeHead(400, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ message: 'Invalid user ID' }));
     return;
   }
 
   const user = users.find((u) => u.id === userId);
-  console.log('Found user:', user);
 
   if (!user) {
     res.writeHead(404, { 'Content-Type': 'application/json' });
@@ -52,7 +50,6 @@ export const createUser = (req, res) => {
     };
 
     users.push(newUser);
-    console.log('User created:', newUser);
 
     res.writeHead(201, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(newUser));
