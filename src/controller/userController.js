@@ -1,4 +1,4 @@
-import{ validate as isUuid } from 'uuid';
+import { validate as isUuid, v4 as uuidv4 } from 'uuid';
 
 const users = [];
 
@@ -23,7 +23,7 @@ export const getUserById = (req, res, userId) => {
   }
 
   res.writeHead(200, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify(users));
+  res.end(JSON.stringify(user));
 };
 
 export const createUser = (req, res) => {
@@ -34,9 +34,9 @@ export const createUser = (req, res) => {
   });
 
   req.on('end', () => {
-    const { userName, age, hobbies } = JSON.parse(body);
+    const { username, age, hobbies } = JSON.parse(body);
 
-    if (!userName || !age || !Array.isArray(hobbies)) {
+    if (!username || !age || !Array.isArray(hobbies)) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ message: 'Invalid request body' }));
       return;
@@ -44,7 +44,7 @@ export const createUser = (req, res) => {
 
     const newUser = {
       id: uuidv4(),
-      userName,
+      username,
       age,
       hobbies
     };
@@ -78,9 +78,9 @@ export const updateUser = (req, res, userId) => {
   });
 
   req.on('end', () => {
-    const { userName, age, hobbies } = JSON.parse(body);
+    const { username, age, hobbies } = JSON.parse(body);
 
-    if (!userName || !age || !Array.isArray(hobbies)) {
+    if (!username || !age || !Array.isArray(hobbies)) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ message: 'Invalid request body' }));
       return;
@@ -88,7 +88,7 @@ export const updateUser = (req, res, userId) => {
 
     const updatedUser = {
       id: userId,
-      userName,
+      username,
       age,
       hobbies
     };
