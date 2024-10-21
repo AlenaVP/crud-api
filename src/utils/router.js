@@ -12,6 +12,9 @@ const router = (req, res) => {
     getUserById(req, res, userId);
   } else if (pathName === '/api/users' && req.method === 'POST') {
     createUser(req, res);
+  } else if (pathName.match(/^\/api\/users\/\w+$/) && req.method === 'PUT') {
+    const userId = pathName.split('/')[3];
+    updateUser(req, res, userId);
   } else {
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ message: 'Not Found' }));

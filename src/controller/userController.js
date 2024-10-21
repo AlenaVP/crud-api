@@ -34,9 +34,9 @@ export const createUser = (req, res) => {
   });
 
   req.on('end', () => {
-    const { username, age, hobbies } = JSON.parse(body);
+    const { userName, age, hobbies } = JSON.parse(body);
 
-    if (!username || !age || !Array.isArray(hobbies)) {
+    if (!userName || !age || !Array.isArray(hobbies)) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ message: 'Invalid request body' }));
       return;
@@ -44,7 +44,7 @@ export const createUser = (req, res) => {
 
     const newUser = {
       id: uuidv4(),
-      username,
+      userName,
       age,
       hobbies
     };
@@ -53,5 +53,49 @@ export const createUser = (req, res) => {
 
     res.writeHead(201, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(newUser));
+  });
+};
+
+export const updateUser = (req, res, userId) => {
+  if (!isUuid(userId)) {
+    res.writeHead(400, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ message: 'Invalid user ID' }));
+    return;
+  }
+
+  const userIndex = users.findIndex(u => u.id === userId);
+
+  if (userIndex === -1) {
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ message: 'User not found' }));
+    return;
+  }
+
+  let body = '';
+
+  req.on('data', chunk => {
+    body += chunk.toString();
+  });
+
+  req.on('end', () => {
+    const { userName, age, hobbies } = JSON.parse(body);
+
+    if (!userName || !age || !Array.isArray(hobbies)) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ message: 'Invalid request body' }));
+      return;
+    }
+
+    const updatedUser = {
+      id: userId,
+      userName,
+      age,
+      hobbies
+    };
+
+    users[userIndex] = updatedUser;
+
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(updatedUser));
   });
 };
