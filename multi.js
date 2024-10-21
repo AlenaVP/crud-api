@@ -16,6 +16,8 @@ if (cluster.isMaster) {
     cluster.fork();
   }
 
+  import('./src/service/loadBalancer.js');
+
   cluster.on('exit', (worker, code, signal) => {
     console.log(`Worker ${worker.process.pid} died`);
   });
