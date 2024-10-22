@@ -30,55 +30,36 @@ This project implements a simple CRUD API using an in-memory database. The API a
 7. Tests for the API (at least 3 scenarios)
 8. Horizontal scaling using the Node.js `Cluster` API with a load balancer that distributes requests using the Round-robin algorithm (`npm run start:multi`)
 
-## Project Structure
-crud-api/
-├── src/
-│   ├── controller/
-│       └── userController.js
-│   ├── service/
-│       └── loadBalancer.js
-│   ├── test/
-│       └── user.test.js
-│   └── utils/
-│       ├── db.js
-│       ├── router.js
-│       └── server.js
-├── .babelrc
-├── .env
-├── .gitignore
-├── app.js
-├── jest.config.js
-├── multi.js
-├── package.json
-
-
 ## Installation
 1. Clone the repository:
    ```sh
    git clone https://github.com/your-username/crud-api.git
-   cd crud-api```
+   cd crud-api
 
 2. Install dependencies:
    ```sh
-   npm install```
+   npm install
 
 3. Create a`.env` file in the root directory and add the following:
    ```sh
-   PORT=3000```
+   PORT=3000
 
 ## Running the Application
 
 ### Development Mode
 To run the application in development mode with hot-reloading:
-   `npm run start:dev`
+   ```sh
+   npm run start:dev
 
 ### Production Mode
 To run the application in production mode:
-    `npm run start:prod`
+   ```sh
+   npm run start:prod
 
 ### Multi-Instance Mode
 To run the application with multiple instances using the Node.js `Cluster` API:
-    `npm run start:multi`
+    ```sh
+    npm run start:multi
 
 ## Using the API
 ### Endpoints
@@ -91,12 +72,16 @@ To run the application with multiple instances using the Node.js `Cluster` API:
 ### Example Requests
 Get All Users
     `curl -X GET http://localhost:3000/api/users`
+
 Get User by ID
     `curl -X GET http://localhost:3000/api/users/{userId}`
+
 Create a New User
     `curl -X POST http://localhost:3000/api/users -H "Content-Type: application/json" -d '{"username": "John Doe", "age": 30, "hobbies": ["reading", "gaming"]}'`
+
 Update an Existing User
     `curl -X PUT http://localhost:3000/api/users/{userId} -H "Content-Type: application/json" -d '{"username": "John Doe", "age": 31, "hobbies": ["reading", "gaming", "hiking"]}'`
+
 Delete a User
     `curl -X DELETE http://localhost:3000/api/users/{userId}`
 
