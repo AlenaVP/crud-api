@@ -35,32 +35,26 @@ This project implements a simple CRUD API using an in-memory database. The API a
    ```sh
    git clone https://github.com/your-username/crud-api.git
    cd crud-api
-
 2. Install dependencies:
    ```sh
    npm install
-
-3. Create a`.env` file in the root directory and add the following:
+3. Create a `.env` file in the root directory and add the following:
    ```sh
    PORT=3000
-
 ## Running the Application
 
 ### Development Mode
-To run the application in development mode with hot-reloading:
+- To run the application in development mode with hot-reloading:
    ```sh
    npm run start:dev
-
 ### Production Mode
-To run the application in production mode:
+- To run the application in production mode:
    ```sh
    npm run start:prod
-
 ### Multi-Instance Mode
-To run the application with multiple instances using the Node.js `Cluster` API:
+- To run the application with multiple instances using the Node.js `Cluster` API:
     ```sh
     npm run start:multi
-
 ## Using the API
 ### Endpoints
 - GET `/api/users` - Get all users
